@@ -1,7 +1,7 @@
 extends CharacterBody2D #Ta aldrig bort!
 class_name Enemy
 
-const MAX_SPEED = 400
+const MAX_SPEED = 200
 const ACC = 1500
 
 #Kommer definieras av förälder som har åtkomst till sina barn. 
@@ -15,6 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	print(velocity)
 	if player: #if player exists
 		var direction_to_player = global_position.direction_to(player.global_position)
 		velocity = velocity.move_toward(direction_to_player*MAX_SPEED, ACC*delta)
