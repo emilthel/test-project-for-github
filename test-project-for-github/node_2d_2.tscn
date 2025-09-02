@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdm1tx5losu0j"]
+
+[ext_resource type="Script" path="res://node_2d_2.gd" id="1_ftvmd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mja5h"]
+
+[sub_resource type="Gradient" id="Gradient_tyry7"]
+offsets = PackedFloat32Array(0.0227273, 0.668831, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.883117, 0.883117, 0.883117, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rh2fj"]
+gradient = SubResource("Gradient_tyry7")
+width = 16
+height = 16
+fill_from = Vector2(0.68578, 0.233945)
+
+[node name="Node2D2" type="Area2D"]
+position = Vector2(300, 300)
+script = ExtResource("1_ftvmd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mja5h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(9.33203, 9.23828)
+texture = SubResource("GradientTexture2D_rh2fj")

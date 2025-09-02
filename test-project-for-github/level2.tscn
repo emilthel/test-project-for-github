@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6a477racgkvi"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_ryj6o"]
+[ext_resource type="PackedScene" uid="uid://br35kps3m0oaf" path="res://player.tscn" id="2_wcdot"]
+[ext_resource type="Script" path="res://enemy.gd" id="3_0pho3"]
+[ext_resource type="Texture2D" uid="uid://ois6lyoac6vk" path="res://icon.svg" id="4_8tgpk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnpua"]
+size = Vector2(78, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8moj"]
+size = Vector2(116, 114)
+
+[node name="Level" type="Sprite2D"]
+script = ExtResource("1_ryj6o")
+
+[node name="Player" parent="." instance=ExtResource("2_wcdot")]
+collision_mask = 0
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(200, 200)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_0pho3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_tnpua")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("4_8tgpk")
+
+[node name="PlayerDetectArea" type="Area2D" parent="Enemy"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/PlayerDetectArea"]
+shape = SubResource("RectangleShape2D_m8moj")
+
+[connection signal="body_entered" from="Enemy/PlayerDetectArea" to="Enemy" method="_on_player_detect_area_body_entered"]
