@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b78286yxm5dql"]
+
+[ext_resource type="Script" path="res://gibble.gd" id="1_d66ya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtjhm"]
+size = Vector2(63, 63)
+
+[sub_resource type="Gradient" id="Gradient_ekx0d"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c85lr"]
+gradient = SubResource("Gradient_ekx0d")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.00688073, 1)
+
+[node name="Gibble2" type="Area2D"]
+visible = false
+position = Vector2(843, 290)
+script = ExtResource("1_d66ya")
+speed = 200.0
+max_mass = 1.0
+fertile = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rtjhm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.8147e-06, 3.8147e-06)
+scale = Vector2(0.96875, 0.96875)
+texture = SubResource("GradientTexture2D_c85lr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,8 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
+signal dead
+
+var exploding = false
+
 const MAX_SPEED = 400
 const ACC = 1500
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +26,14 @@ func _physics_process(delta: float) -> void:
 	
 	#Rör spelobjektet enligt velocity-vektorn och hanterar kollision
 	move_and_slide()
+	
+	if exploding:
+		scale.x += 10*delta
+		scale.y += 10*delta
+		print(scale.x)
+		modulate *= Color(1.1,1.1,1.1,0.9)
+
 
 func die():
-	hide()
+	emit_signal("dead")
+	exploding = true
